@@ -8,7 +8,7 @@
 - ✂️ Gana a 📜
 
 
-> [Jugar](https://game-piedra-papel-tijera.netlify.app/ "Jugar") <br>
+> [Jugar](https://game-piedra-papel-tijera-lldp.netlify.app/ "Jugar") <br>
 > Netifly
 
 > Desarrollado por Lautaro Leal
