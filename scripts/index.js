@@ -1,65 +1,174 @@
-// Desarrollar un script que pida al usuario elegir una opcion (piedra, papel, tijera)
-// Tiene q calcular automaticamente una opcion para la calculadora
-// Comparar dos Valores
-// Definir un ganador
+// Obtener elementos del DOM
+let btnPlay = document.querySelector('.btn-play'); // Botón de jugar
+const gameContainer = document.querySelector('.game');
+const optionsContainer = document.querySelector('.options-img');
+const instructions = document.querySelector('.instructions');
+const scoreUser = document.querySelector('.points-user');
+const scoreComputer = document.querySelector('.points-computer');
 
-// Opciones a elegir
-const opciones = ["piedra", "papel", "tijera"];
+// Crear botones Reiniciar y Salir
+const btnReset = document.createElement('button');
+btnReset.textContent = 'VOLVER A JUGAR';
+btnReset.className = 'btn btn-play btn-reset';
+btnReset.style.display = 'none';
 
-// Elegir una Opcion "USUARIO"
-const usuario = () => {
-    const opcionUser = prompt("Elige una Opcion 🪨 📜 ✂️​").toLowerCase();
-    if (opciones.includes(opcionUser)) {
-        // .includes devuelve true si el array contiene el valor, false si no
-        // evalua si la opcion elegida esta dentro de la lista de opciones (dentro del array)
-        return opcionUser;
-    } else {
-        alert("Opcion Incorrecta 😭, Inténtalo de Nuevo 😎");
-        usuario();
-    }
-};
+gameContainer.appendChild(btnReset);
 
-// Elegir una Opcion "COMPUTADORA"
-// OPCION PARA HACERLO + LARGO
-const opcionComputer = () => {
-    const computer = Math.floor(Math.random() * 3);
-    switch (computer) {
-        case 0:
-            alert("La Computadora eligio piedra 🪨");
-            return "piedra";
-        case 1:
-            alert("La Computadora eligio papel 📜");
-            return "papel";
-        case 2:
-            alert("La Computadora eligio tijera ✂️");
-            return "tijera";
-    }
+const btnExit = document.createElement('button');
+btnExit.textContent = 'SALIR';
+btnExit.className = 'btn btn-play btn-exit';
+btnExit.style.display = 'none';
+
+gameContainer.appendChild(btnExit);
+
+// Estado inicial
+let puntosJugador = 0;
+let puntosComputadora = 0;
+
+// Ocultar el contenedor del juego al cargar
+gameContainer.style.display = 'none';
+
+// Opciones válidas
+const opciones = ['piedra', 'papel', 'tijera'];
+
+// Crear las opciones (imágenes)
+function crearOpciones() {
+    optionsContainer.innerHTML = '';
+
+    opciones.forEach(opcion => {
+        const img = document.createElement('img');
+        img.src = `/assets/${opcion}.png`;
+        img.alt = opcion;
+        img.classList.add('opcion-img', 'animate-fade');
+
+        Object.assign(img.style, {
+            width: '10rem',
+            margin: '1rem',
+            borderRadius: '50%',
+            padding: '1rem',
+            backgroundColor: 'rgba(70, 100, 100, 0.6)',
+            border: '5px solid rgb(70, 100, 100)',
+            transition: 'all 0.3s ease-in-out',
+            cursor: 'pointer'
+        });
+
+        img.addEventListener('click', () => manejarEleccionUsuario(opcion, img), { once: true });
+
+        optionsContainer.appendChild(img);
+    });
 }
-//OPCION PARA HACERLO + CORTO
-// const opcionComputer = () => {
-//     const indice = Math.floor(Math.random() * 3);
-//     return opciones[indice];
-// }
-// alert(`La Computadora eligio ${opcionComputer()}`);
 
-// Comparar dos Valores (definir ganador)
-const determinarGanador = (usuario, opcionComputer) => {
-    if (usuario == opcionComputer) {
-        return "Empate 😐";
-    } else if ((usuario === "piedra" && opcionComputer === "tijera")
-        ||
-        (usuario === "papel" && opcionComputer === "piedra")
-        ||
-        (usuario === "tijera" && opcionComputer === "papel")) {
-        return "Ganador: Usuario 😎";
-    } else {
-        return "Ganador: Computadora 😭";
+// Elección aleatoria
+function getComputerChoice() {
+    return opciones[Math.floor(Math.random() * opciones.length)];
+}
+
+// Determinar resultado
+function getWinner(user, computer) {
+    if (user === computer) return 'Empate';
+    if (
+        (user === 'piedra' && computer === 'tijera') ||
+        (user === 'papel' && computer === 'piedra') ||
+        (user === 'tijera' && computer === 'papel')
+    ) {
+        puntosJugador++;
+        return 'Ganaste';
     }
+    puntosComputadora++;
+    return 'Perdiste';
 }
 
-const iniciarJuego = () => {
-    const seleccionUsuario = usuario();
-    const seleccionComputer = opcionComputer();
-    const resultado = determinarGanador(seleccionUsuario, seleccionComputer);
-    alert(resultado);
+// Manejo de selección del jugador
+function manejarEleccionUsuario(userChoice, userImg) {
+    instructions.style.display = 'none';
+    btnPlay.style.display = 'none';
+
+    document.querySelectorAll('.opcion-img').forEach(img => {
+        img.style.pointerEvents = 'none';
+        if (img !== userImg) {
+            img.style.display = 'none';
+        } else {
+            img.classList.add('animate-shake', 'combat-left');
+            img.style.marginRight = '2rem';
+        }
+    });
+
+    setTimeout(() => {
+        const computerChoice = getComputerChoice();
+
+        const computerImg = document.createElement('img');
+        computerImg.src = `/assets/${computerChoice}.png`;
+        computerImg.alt = computerChoice;
+        computerImg.classList.add('animate-fade', 'combat-right');
+
+        Object.assign(computerImg.style, {
+            width: '10rem',
+            margin: '1rem',
+            borderRadius: '50%',
+            padding: '1rem',
+            backgroundColor: 'rgba(70, 100, 100, 0.6)',
+            border: '5px solid rgb(70, 100, 100)',
+            transition: 'all 0.3s ease-in-out',
+            transform: 'rotateY(180deg)'
+        });
+
+        optionsContainer.appendChild(computerImg);
+
+        setTimeout(() => {
+            const resultado = getWinner(userChoice, computerChoice);
+
+            scoreUser.textContent = puntosJugador;
+            scoreComputer.textContent = puntosComputadora;
+
+            Swal.fire({
+                title: resultado,
+                html: `<strong>Tu elección:</strong> ${userChoice.toUpperCase()}<br><strong>Computadora:</strong> ${computerChoice.toUpperCase()}`,
+                icon: resultado === 'Ganaste' ? 'success' : resultado === 'Perdiste' ? 'error' : 'info',
+                showConfirmButton: false,
+                allowOutsideClick: true,
+                showCloseButton: true
+            });
+
+            btnReset.style.display = 'inline-block';
+            btnExit.style.display = 'inline-block';
+        }, 500);
+    }, 1500);
 }
+
+// Reset del juego
+function resetGame() {
+    btnPlay.textContent = 'JUGAR';
+    btnPlay.style.display = 'none';
+    btnPlay.disabled = true;
+    instructions.style.display = 'block';
+    crearOpciones();
+    btnReset.style.display = 'none';
+    btnExit.style.display = 'none';
+}
+
+// Salir al inicio
+function salirAlInicio() {
+    puntosJugador = 0;
+    puntosComputadora = 0;
+    scoreUser.textContent = '0';
+    scoreComputer.textContent = '0';
+    btnPlay.textContent = 'JUGAR';
+    btnPlay.style.display = 'inline-block';
+    btnPlay.disabled = false;
+    gameContainer.style.display = 'none';
+    instructions.style.display = 'block';
+    optionsContainer.innerHTML = '';
+    btnReset.style.display = 'none';
+    btnExit.style.display = 'none';
+}
+
+// 🚀 Iniciar juego
+btnPlay.addEventListener('click', () => {
+    gameContainer.style.display = 'flex';
+    btnPlay.disabled = true;
+    btnPlay.style.display = 'none';
+    crearOpciones();
+});
+
+btnReset.addEventListener('click', resetGame);
+btnExit.addEventListener('click', salirAlInicio);
