@@ -1,54 +1,208 @@
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.container-fluid{
+/* Body */
+body {
+    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    height: 100vh;
-    background-color: hsla(247, 100%, 17%, 0.277);
+    background-color: rgba(50, 70, 70, 0.8);
+    font-family: sans-serif;
 }
 
-.h1{
-    text-align: center;
-    color: lch(40.55% 25.69 225.69);
-    text-shadow: 0px 5px 20px #0a0057;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-.title{
-    text-align: center;
-    color: lch(40.55% 25.69 225.69);
-    text-shadow: 0px 5px 20px #0a0057;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-}
-
-.container-btn{
+/* Header */
+.container-header {
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
-.btn{
-    background-color: lch(40.55% 25.69 225.69);
-    color: white;
-    border: none;
-    padding: 1rem;
+/* Puntos */
+.points {
+    width: fit-content;
+    padding: 0.5rem;
+    border: 3px solid rgb(70, 100, 100);
+    margin-bottom: 3rem;
+}
+
+.user {
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: bisque;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+.computer {
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: bisque;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+/* Títulos */
+.first-title {
+    font-size: 7rem;
+    text-shadow: 5px 5px 20px rgb(70, 150, 150);
+}
+
+.points-title {
     font-size: 1rem;
-    font-family: 'Courier New', Courier, monospace; 
-    transition: all 0.3s ease-in-out;
+    letter-spacing: 0.5rem;
+    font-weight: 600;
+    color: rgb(30, 80, 80);
 }
 
-.btn:hover{
-    background-color: #00607473;
-    color: hsl(0, 0%, 0%);
-    cursor: pointer;   
-    transform: scale(1.1);
-    transition: all 0.3s ease-in-out;     
+.second-title {
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    text-shadow: 5px 5px 10px rgb(70, 150, 150);
+    color: rgb(30, 80, 80);
+}
+
+.description,
+.description-instructions {
+    font-size: 1rem;
+    letter-spacing: 0.5rem;
+    font-weight: 600;
+    color: rgb(30, 80, 80);
+}
+
+/* Main */
+.container-fluid {
+    width: 100%;
+    height: 50vh;
+}
+
+/* Botónes */
+.btn-play {
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: rgb(30, 80, 80);
+    transition: all 0.3s ease-in-out;
+    padding: 0.5rem 2rem;
+    border-radius: 12px;
+}
+
+.btn-play:hover {
+    background-color: rgb(30, 80, 80);
+    color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+}
+
+/* Botón Reset/Salir (heredan estilos del botón JUGAR) */
+.btn-reset,
+.btn-exit {
+    margin: 0.5rem 0;
+}
+
+/* Contenedor de opciones con perspectiva */
+.options-img {
+    gap: 2rem;
+}
+
+/* Imágenes de opciones */
+.opcion-img {
+    width: 10rem;
+    border-radius: 50%;
+    padding: 1rem;
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover IMG */
+.opcion-img:hover {
+    transform: scale(0.9) rotateZ(-5deg);
+    background-color: rgb(30, 80, 80);
+    border-color: rgb(70, 100, 100);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Instrucciones */
+.instructions {
+    margin-top: 1.5rem;
+}
+
+/* Animaciones base */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Clases animación */
+.animate-fade {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease;
+}
+
+/* Footer */
+.container-footer {
+    width: 60vw;
+}
+
+.container-redes {
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.footer-link {
+    padding: 0.3rem;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    color: rgb(30, 80, 80);
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+}
+
+.footer-link:hover {
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
