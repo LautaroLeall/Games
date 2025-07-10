@@ -1,0 +1,168 @@
+/* ========== RESETEO Y BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(50, 70, 70, 0.8);
+    font-family: sans-serif;
+}
+
+/* ========== HEADER ========== */
+.container-header {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.points {
+    width: 50vw;
+    margin-bottom: 4rem;
+}
+
+.user,
+.computer {
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: bisque;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+/* ========== MAIN ========== */
+.container-fluid {
+    width: 100%;
+    height: 50vh;
+}
+
+.first-title {
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+    text-shadow: 5px 5px 10px rgb(70, 150, 150);
+    color: rgb(30, 80, 80);
+}
+
+.description,
+.description-instructions {
+    font-size: 1rem;
+    letter-spacing: 0.5rem;
+    font-weight: 600;
+    color: rgb(30, 80, 80);
+}
+
+.btn-play {
+    letter-spacing: 0.3rem;
+    font-weight: 600;
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: rgb(30, 80, 80);
+    transition: all 0.3s ease-in-out;
+    padding: 0.5rem 2rem;
+    border-radius: 12px;
+}
+
+.btn-play:hover {
+    background-color: rgb(30, 80, 80);
+    color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+}
+
+/* Botones Reset y Exit */
+.btn-reset,
+.btn-exit {
+    margin: 0.5rem 0;
+}
+
+/* ========== OPCIONES (IMÁGENES) ========== */
+.opcion-img {
+    width: 10rem;
+    border-radius: 50%;
+    padding: 1rem;
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.opcion-img:hover {
+    background-color: rgb(30, 80, 80);
+    border-color: rgb(70, 100, 100);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ========== ANIMACIONES ========== */
+@keyframes option {
+    0% {
+        opacity: 0;
+        transform: scale(0.2);
+        rotate: 0deg;
+    }
+
+    25% {
+        transform: scale(0.4);
+        rotate: -25deg;
+    }
+
+    50% {
+        transform: scale(0.6);
+        rotate: 25deg;
+    }
+
+    75% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        rotate: 0deg;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(0deg) scaleX(-1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(270deg) scaleX(-1);
+    }
+}
+
+@keyframes shake {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(90deg);
+    }
+}
+
+.animate-option {
+    animation: option 0.5s ease forwards;
+}
+
+.animate-fade {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease forwards;
+}
