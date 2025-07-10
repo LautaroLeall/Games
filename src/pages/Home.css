@@ -4,3 +4,17 @@
     text-shadow: 5px 5px 10px rgb(70, 150, 150);
     color: rgb(30, 80, 80);
 }
+
+.img-games {
+    width: 150px;
+    height: 150px;
+}
+
+.custom-tooltip {
+    --bs-tooltip-bg: rgba(10, 50, 50, 0.9);
+    --bs-tooltip-color: bisque;
+    --bs-tooltip-padding-x: 0.7rem;
+    --bs-tooltip-padding-y: 0.7rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
