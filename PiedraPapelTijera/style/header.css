@@ -1,0 +1,33 @@
+/* Header */
+.container-header {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Puntos */
+.points {
+    width: fit-content;
+    padding: 0.5rem;
+    border: 3px solid rgb(70, 100, 100);
+    margin-bottom: 3rem;
+}
+
+.user {
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: bisque;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+.computer {
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: bisque;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
