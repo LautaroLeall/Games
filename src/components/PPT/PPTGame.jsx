@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { opciones, getComputerChoice, getWinner } from './utils';
 
 import Swal from 'sweetalert2';
-import piedraImg from './assets/piedra.png';
-import papelImg from './assets/papel.png';
-import tijeraImg from './assets/tijera.png';
+import piedraImg from '/public/PPT/piedra.png';
+import papelImg from '/public/PPT/papel.png';
+import tijeraImg from '/public/PPT/tijera.png';
 import './PPT.css';
 
 const imagenes = {
