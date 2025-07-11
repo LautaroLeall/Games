@@ -45,6 +45,12 @@
     border-radius: 12px;
 }
 
+.btn-play:hover {
+    background-color: rgb(30, 80, 80);
+    color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+}
+
 .points {
     width: 100vw;
     margin-bottom: 1.5rem;
@@ -59,12 +65,9 @@
     padding: 0.5rem;
 }
 
-
-
-.btn-play:hover {
-    background-color: rgb(30, 80, 80);
-    color: rgba(70, 100, 100, 0.6);
-    border: 5px solid rgb(70, 100, 100);
+.results {
+    gap: 3rem;
+    margin-bottom: 1.5rem;
 }
 
 /* IMG */
@@ -148,4 +151,118 @@
 
 .animate-shake {
     animation: shake 0.5s ease forwards;
+}
+
+/* RESPONSIVE  */
+/* Tablets y celulares grandes (≤ 768px) */
+@media (max-width: 768px) {
+    .first-title {
+        font-size: 2.2rem;
+        letter-spacing: 0.3rem;
+    }
+
+    .description,
+    .description-instructions,
+    .description-players {
+        font-size: 0.9rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .btn-iniciales {
+        flex-direction: column;
+    }
+
+    .opcion-img {
+        width: 8rem;
+        padding: 0.8rem;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3) rotate(0deg) scaleX(-1);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg) scaleX(-1);
+        }
+    }
+
+    @keyframes shake {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(180deg);
+        }
+    }
+
+    .points {
+        gap: 1rem;
+    }
+
+    .ppt-container1,
+    .ppt-container2 {
+        height: auto;
+        padding: 2rem 1rem;
+    }
+
+    .btn-play {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.5rem;
+    }
+}
+
+/* Celulares medianos (≤ 480px) */
+@media (max-width: 480px) {
+    .first-title {
+        font-size: 1.8rem;
+    }
+
+    .opcion-img {
+        width: 6.5rem;
+        padding: 0.5rem;
+    }
+
+    .btn-play {
+        font-size: 0.8rem;
+        padding: 0.4rem 1.2rem;
+    }
+
+    .points {
+        gap: 1rem;
+    }
+
+    .results {
+        flex-direction: column;
+        gap: 0rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Celulares pequeños (≤ 360px) */
+@media (max-width: 360px) {
+    .first-title {
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .opcion-img {
+        width: 5.5rem;
+    }
+
+    .description,
+    .description-instructions,
+    .description-players {
+        font-size: 0.75rem;
+    }
+
+    .btn-play {
+        font-size: 0.75rem;
+        padding: 0.3rem 1rem;
+    }
 }

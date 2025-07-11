@@ -18,3 +18,56 @@
     font-weight: 600;
     font-size: 0.8rem;
 }
+
+/* RESPONSIVE  */
+/* Tablets y celulares grandes (≤ 768px) */
+@media (max-width: 768px) {
+    .fist-title {
+        font-size: 2.5rem;
+        letter-spacing: 0.3rem;
+    }
+
+    .img-games {
+        width: 150px;
+        height: 150px;
+    }
+
+    .btn-games {
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+}
+
+/* Celulares medianos y chicos (≤ 480px) */
+@media (max-width: 480px) {
+    .fist-title {
+        font-size: 2rem;
+        letter-spacing: 0.2rem;
+    }
+
+    .img-games {
+        width: 120px;
+        height: 120px;
+    }
+
+    .btn-games {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .btn-play {
+        width: 50%;
+    }
+}
+
+/* Celulares ultra chicos (tipo 320px) */
+@media (max-width: 360px) {
+    .fist-title {
+        font-size: 1.8rem;
+    }
+
+    .img-games {
+        width: 100px;
+        height: 100px;
+    }
+}

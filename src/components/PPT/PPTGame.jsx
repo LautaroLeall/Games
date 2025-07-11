@@ -128,7 +128,7 @@ const PPTGame = () => {
 
             {/* Resultado: muestra las jugadas del jugador y la computadora */}
             {jugadaJugador && jugadaComputadora && (
-                <div className="results d-flex justify-content-center align-items-center gap-5">
+                <div className="results d-flex justify-content-center align-items-center">
                     <div className="text-center">
                         <h4 className='description-players'>JUGADOR</h4>
                         <img
