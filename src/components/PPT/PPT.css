@@ -1,9 +1,4 @@
 /* INICIO */
-.ppt-container1 {
-    width: 100%;
-    height: 30vh;
-}
-
 .first-title {
     font-size: 3rem;
     letter-spacing: 0.5rem;
@@ -29,11 +24,6 @@
 }
 
 /* EN EL JUEGO */
-.ppt-container2 {
-    width: 100%;
-    height: 60vh;
-}
-
 .btn-play {
     letter-spacing: 0.3rem;
     font-weight: 600;
