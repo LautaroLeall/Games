@@ -5,7 +5,8 @@ import circleImg from '/public/TTT/circle.png';
 import crossImg from '/public/TTT/cross.png';
 import './TTT.css';
 
-const TTTGame = () => {
+const TTTGame = ({ setMostrarFooter }) => {
+    // Estados del juego
     const [modoVsCPU, setModoVsCPU] = useState(null);
     const [tablero, setTablero] = useState(Array(9).fill(null));
     const [turnoX, setTurnoX] = useState(true);
@@ -16,7 +17,12 @@ const TTTGame = () => {
 
     const jugadorActual = turnoX ? 'X' : 'O';
 
-    //  Declará primero esta función antes del useEffect
+    // Mostrar/Ocultar Footer dependiendo del estado inicial
+    useEffect(() => {
+        setMostrarFooter(modoVsCPU === null);
+    }, [modoVsCPU, setMostrarFooter]);
+
+    // Ejecuta una jugada y actualiza estado del juego
     const realizarJugada = useCallback((indice, jugador) => {
         const nuevoTablero = [...tablero];
         nuevoTablero[indice] = jugador;
@@ -35,10 +41,11 @@ const TTTGame = () => {
             return;
         }
 
+        // Cambia turno
         setTurnoX(jugador === 'X' ? false : true);
     }, [tablero]);
 
-    // Efecto: la computadora juega automáticamente
+    // Turno automático de la computadora
     useEffect(() => {
         if (modoVsCPU && !ganador && jugadorActual === 'O') {
             const timer = setTimeout(() => {
@@ -52,11 +59,13 @@ const TTTGame = () => {
         }
     }, [tablero, modoVsCPU, ganador, jugadorActual, realizarJugada]);
 
+    // Acción al hacer clic en una celda
     const manejarClick = (indice) => {
         if (tablero[indice] || ganador || (modoVsCPU && jugadorActual === 'O')) return;
         realizarJugada(indice, jugadorActual);
     };
 
+    // Reinicia una ronda manteniendo la alternancia de turno
     const reiniciarRonda = () => {
         const nuevoInicio = !turnoInicialX;
         setTurnoInicialX(nuevoInicio);
@@ -65,6 +74,7 @@ const TTTGame = () => {
         setGanador(null);
     };
 
+    // Sale del juego y reinicia todo
     const reiniciarJuego = () => {
         setModoVsCPU(null);
         setTablero(Array(9).fill(null));
@@ -73,14 +83,17 @@ const TTTGame = () => {
         setGanador(null);
         setPuntosX(0);
         setPuntosO(0);
+        setMostrarFooter(true); // Mostrar el footer nuevamente
     };
 
+    // Renderiza el ícono X u O
     const renderIcono = (valor) => {
         if (valor === 'X') return <img src={crossImg} alt="X" />;
         if (valor === 'O') return <img src={circleImg} alt="O" />;
         return null;
     };
 
+    // MENÚ INICIAL (Seleccionar con quién jugar)
     if (modoVsCPU === null) {
         return (
             <div className="ttt-container1 text-center">
@@ -97,6 +110,7 @@ const TTTGame = () => {
         );
     }
 
+    // INTERFAZ PRINCIPAL DEL JUEGO
     return (
         <div className="ttt-container2 text-center">
             <div className="points d-flex justify-content-center align-items-center gap-5">
@@ -120,7 +134,7 @@ const TTTGame = () => {
                     : `TURNO DEL JUGADOR ${jugadorActual}`}
             </p>
 
-            <div className="tablero d-grid gap-3 justify-content-center align-items-center">
+            <div className="tablero d-grid justify-content-center align-items-center">
                 {tablero.map((valor, indice) => (
                     <div
                         key={indice}

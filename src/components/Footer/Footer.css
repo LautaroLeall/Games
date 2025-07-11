@@ -1,0 +1,31 @@
+.footer {
+    width: 30%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: rgba(50, 80, 80, 0.2);
+}
+
+.redes-link {
+    color: rgb(30, 80, 80);
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+.redes-link:hover {
+    transition: 0.3s;
+    transform: scale(1.1);
+    color: rgb(70, 150, 150);
+}
+
+.footer-bottom {
+    color: rgb(30, 80, 80);
+    font-size: 0.9rem;
+}
+
+/* RESPONSIVE  */
+/* Tablets y celulares grandes (≤ 768px) */
+@media (max-width: 768px) {
+    .footer {
+        width: 100%;
+    }
+}

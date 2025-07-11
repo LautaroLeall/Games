@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { opciones, getComputerChoice, getWinner } from './utils';
 
+// Imágenes de cada jugada
 import piedraImg from '/public/PPT/piedra.png';
 import papelImg from '/public/PPT/papel.png';
 import tijeraImg from '/public/PPT/tijera.png';
@@ -15,7 +16,7 @@ const imagenes = {
     tijera: tijeraImg,
 };
 
-const PPTGame = () => {
+const PPTGame = ({ setMostrarFooter }) => {
     // Estados para puntajes
     const [puntosJugador, setPuntosJugador] = useState(0);
     const [puntosComputadora, setPuntosComputadora] = useState(0);
@@ -26,6 +27,13 @@ const PPTGame = () => {
 
     // Estado para controlar visibilidad de botones y puntajes
     const [jugando, setJugando] = useState(false);
+
+    // Mostrar el footer solo si no se está jugando
+    useEffect(() => {
+        if (!jugando) {
+            setMostrarFooter(true);
+        }
+    }, [jugando, setMostrarFooter]);
 
     // Función que se llama cuando el usuario elige una opción
     const manejarEleccion = (opcion) => {
@@ -66,6 +74,7 @@ const PPTGame = () => {
         setJugadaJugador(null);
         setJugadaComputadora(null);
         setJugando(false);
+        setMostrarFooter(true); // Volver a mostrar el footer cuando se sale del juego
     };
 
     // Mostrar puntos solo si el jugador está jugando o ya jugó
@@ -79,7 +88,15 @@ const PPTGame = () => {
                 <p className="description">¡PRESIONA EL BOTÓN PARA JUGAR!</p>
 
                 <div className="btn-iniciales d-flex justify-content-center align-items-center gap-3">
-                    <button className="btn btn-play" onClick={() => setJugando(true)}>JUGAR</button>
+                    <button
+                        className="btn btn-play"
+                        onClick={() => {
+                            setJugando(true);
+                            setMostrarFooter(false); // Ocultar footer al iniciar el juego
+                        }}
+                    >
+                        JUGAR
+                    </button>
                     <Link to="/" className="btn btn-play">VOLVER</Link>
                 </div>
             </div>
@@ -89,7 +106,6 @@ const PPTGame = () => {
     // INTERFAZ PRINCIPAL DEL JUEGO
     return (
         <div className="ppt-container2 text-center">
-
             {/* Mostrar puntos mientras esté en juego o mostrando resultados */}
             {mostrarPuntajes && (
                 <div className="points d-flex justify-content-center align-items-center gap-5">
