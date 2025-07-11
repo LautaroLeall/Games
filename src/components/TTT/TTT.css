@@ -4,7 +4,7 @@
     height: 30vh;
 }
 
-.btn-ttt{
+.btn-ttt {
     width: 15rem;
 }
 
@@ -48,4 +48,21 @@
     width: 70%;
     height: 70%;
     object-fit: contain;
+}
+
+/* RESPONSIVE */
+/* Tablets y celulares grandes (≤ 768px) */
+@media (max-width: 768px) {
+    .btn-ttt {
+        font-size: 0.8rem;
+        padding: 0.4rem 1rem;
+        width: 15rem;
+    }
+}
+
+/* Celulares medianos (≤ 480px) */
+@media (max-width: 480px) {
+    .where-play {
+        flex-direction: column;
+    }
 }
