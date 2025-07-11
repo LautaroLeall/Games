@@ -1,7 +1,8 @@
 # 🎮 Mini Juegos Web
 
-Este proyecto es una aplicación web construida con **React + Vite**, que ofrece dos juegos clásicos con una interfaz moderna, animaciones suaves y lógica robusta:  
-- 🪨✋✂️ **Piedra, Papel o Tijera** 
+Este proyecto es una aplicación web construida con **React + Vite**, que ofrece dos juegos clásicos con una interfaz moderna, animaciones suaves y lógica robusta:
+
+- 🪨✋✂️ **Piedra, Papel o Tijera**
 - ❌⭕ **Ta Te Ti**.
 
 ---
@@ -41,7 +42,7 @@ src/
 
 ## 🧠 Juegos implementados
 
-### *Piedra, Papel o Tijera*
+### _Piedra, Papel o Tijera_
 
 - Juega contra la computadora.
 - Sistema de puntaje.
@@ -59,7 +60,7 @@ src/
 
 ---
 
-### *Ta Te Ti*
+### _Ta Te Ti_
 
 - Modo contra un amigo o la computadora.
 - Algoritmo básico para la IA (bloqueo, centro, esquinas, aleatorio).
@@ -76,11 +77,17 @@ src/
 
 ---
 
-### 🏠 *Página de Inicio*
+### 🏠 _Página de Inicio_
 
 - Muestra los dos juegos disponibles.
 - Estilizado con Bootstrap y tooltips.
 - Navegación con React Router.
+
+---
+
+## 🚀 Probar Games-Lau
+
+[![Abrir Games-Lau](https://img.shields.io/badge/Abrir%20Games%20Lau-%239b59b6?style=for-the-badge&logo=netlify&logoColor=white)](https://games-lau.netlify.app/)
 
 ---
 
