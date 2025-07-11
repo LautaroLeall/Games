@@ -1,56 +1,13 @@
-/* ========== RESETEO Y BASE ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    overflow: hidden;
+/* INICIO */
+.ppt-container1 {
     width: 100%;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(50, 70, 70, 0.8);
-    font-family: sans-serif;
-}
-
-/* ========== HEADER ========== */
-.container-header {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.points {
-    width: 50vw;
-    margin-bottom: 4rem;
-}
-
-.user,
-.computer {
-    background-color: rgba(70, 100, 100, 0.6);
-    border: 5px solid rgb(70, 100, 100);
-    color: bisque;
-    transition: all 0.3s ease;
-    padding: 0.5rem;
-}
-
-/* ========== MAIN ========== */
-.container-fluid {
-    width: 100%;
-    height: 50vh;
+    height: 30vh;
 }
 
 .first-title {
     font-size: 3rem;
     letter-spacing: 0.5rem;
-    text-shadow: 5px 5px 10px rgb(70, 150, 150);
+    text-shadow: 3px 3px 10px rgb(70, 150, 150);
     color: rgb(30, 80, 80);
 }
 
@@ -60,6 +17,21 @@ body {
     letter-spacing: 0.5rem;
     font-weight: 600;
     color: rgb(30, 80, 80);
+    margin: 2rem 0;
+}
+
+.description-players {
+    margin-top: 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.5rem;
+    font-weight: 600;
+    color: rgb(30, 80, 80);
+}
+
+/* EN EL JUEGO */
+.ppt-container2 {
+    width: 100%;
+    height: 60vh;
 }
 
 .btn-play {
@@ -73,23 +45,34 @@ body {
     border-radius: 12px;
 }
 
+.points {
+    width: 100vw;
+    margin-bottom: 1.5rem;
+}
+
+.user,
+.computer {
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: bisque;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+
+
 .btn-play:hover {
     background-color: rgb(30, 80, 80);
     color: rgba(70, 100, 100, 0.6);
     border: 5px solid rgb(70, 100, 100);
 }
 
-/* Botones Reset y Exit */
-.btn-reset,
-.btn-exit {
-    margin: 0.5rem 0;
-}
-
-/* ========== OPCIONES (IMÁGENES) ========== */
+/* IMG */
 .opcion-img {
     width: 10rem;
     border-radius: 50%;
     padding: 1rem;
+    margin-bottom: 1rem;
     background-color: rgba(70, 100, 100, 0.6);
     border: 5px solid rgb(70, 100, 100);
     transition: all 0.3s ease;
@@ -102,7 +85,7 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-/* ========== ANIMACIONES ========== */
+/* ANIMACIONES  */
 @keyframes option {
     0% {
         opacity: 0;
