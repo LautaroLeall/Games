@@ -1,3 +1,4 @@
+// src/components/TTT/logic.js
 export const verificarGanador = (tablero) => {
     const combinacionesGanadoras = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], // filas
