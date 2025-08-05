@@ -1,4 +1,12 @@
 /* src/components/GLM/MemoryGame.css */
+/* NIVEL ACTUAL */
+.nivel-actual {
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: bisque;
+    padding: 0.8rem;
+}
+
 /* BOTONES */
 .btn-strict {
     letter-spacing: 0.2rem;
