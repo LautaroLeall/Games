@@ -3,18 +3,18 @@
 .btn-strict {
     letter-spacing: 0.2rem;
     font-weight: 600;
-    background-color: rgba(70, 100, 100, 0.6);
-    border: 5px solid rgb(70, 100, 100);
-    color: rgb(30, 80, 80);
+    background-color: #fed93f;
+    border: 5px solid #cca707;
+    color: #8f7f42;
     transition: all 0.3s ease-in-out;
     padding: 0.5rem 1.5rem;
     border-radius: 12px;
 }
 
 .btn-strict:hover {
-    background-color: rgb(30, 80, 80);
-    color: rgba(70, 100, 100, 0.6);
-    border: 5px solid rgb(70, 100, 100);
+    background-color: #cca707;
+    border: 5px solid #8f7f42;
+    color: #fed93f;
 }
 
 .active-strict {
@@ -29,6 +29,29 @@
     border: 5px solid rgb(180, 30, 30) !important;
     color: rgb(180, 30, 30) !important;
     box-shadow: 0 0 15px red;
+}
+
+/* ANIMACIÓN DE ERROR */
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-10px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(10px);
+    }
+}
+
+.shake-animation {
+    animation: shake 0.6s ease-in-out;
 }
 
 /* CÍRCULO DE JUEGO */
@@ -49,15 +72,14 @@
     height: 50%;
     float: left;
     opacity: 0.9;
-    transition: all 0.2s ease-in-out;
+    transition: filter 0.2s ease-in-out, opacity 0.2s;
     cursor: pointer;
     filter: brightness(0.9);
 }
 
 .quadrant:hover {
     opacity: 1;
-    transform: scale(1.02);
-    filter: brightness(1);
+    filter: brightness(1.5);
 }
 
 /* EFECTO DE FLASH */
@@ -140,8 +162,13 @@
         padding: 0.4rem 1rem;
     }
 
-    .active-strict{
+    .active-strict {
         font-size: 0.9rem;
         padding: 0.4rem 1rem;
+    }
+
+    .btn-play {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
     }
 }
