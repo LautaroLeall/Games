@@ -1,66 +1,147 @@
-.simon-container {
-    margin-top: 3rem;
+/* src/components/GLM/MemoryGame.css */
+/* BOTONES */
+.btn-strict {
+    letter-spacing: 0.2rem;
+    font-weight: 600;
+    background-color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
+    color: rgb(30, 80, 80);
+    transition: all 0.3s ease-in-out;
+    padding: 0.5rem 1.5rem;
+    border-radius: 12px;
 }
 
-.simon-board {
-    display: grid;
-    grid-template-columns: repeat(2, 150px);
-    grid-template-rows: repeat(2, 150px);
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
+.btn-strict:hover {
+    background-color: rgb(30, 80, 80);
+    color: rgba(70, 100, 100, 0.6);
+    border: 5px solid rgb(70, 100, 100);
 }
 
-.simon-btn {
-    width: 150px;
-    height: 150px;
-    border-radius: 1rem;
+.active-strict {
+    background-color: rgb(180, 30, 30, 0.6) !important;
+    border: 5px solid rgb(180, 30, 30) !important;
+    color: rgba(250, 50, 50) !important;
+    box-shadow: 0 0 15px red;
+}
+
+.active-strict:hover {
+    background-color: rgba(250, 50, 50, 0.6) !important;
+    border: 5px solid rgb(180, 30, 30) !important;
+    color: rgb(180, 30, 30) !important;
+    box-shadow: 0 0 15px red;
+}
+
+/* CÍRCULO DE JUEGO */
+.circle-wrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(30, 80, 80, 0.6);
+    margin-top: 1.5rem;
+    background-color: #222;
+}
+
+/* CUADRANTES */
+.quadrant {
+    width: 50%;
+    height: 50%;
+    float: left;
+    opacity: 0.9;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+    filter: brightness(0.9);
+}
+
+.quadrant:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    filter: brightness(1);
+}
+
+/* EFECTO DE FLASH */
+.green.active,
+.red.active,
+.yellow.active,
+.blue.active {
+    box-shadow: 1px 1px 15px #ffffff;
+    z-index: 100;
+}
+
+/* COLORES */
+.green {
+    background-color: #00a74a;
+}
+
+.green.active {
+    background-color: #13ff7c;
 }
 
 .red {
-    background-color: #d32f2f;
+    background-color: #9f0f17;
 }
 
-.green {
-    background-color: #388e3c;
-}
-
-.blue {
-    background-color: #1976d2;
+.red.active {
+    background-color: #ff4c4c;
 }
 
 .yellow {
-    background-color: #fbc02d;
+    background-color: #cca707;
 }
 
-.red.activo {
-    background-color: #ef5350;
+.yellow.active {
+    background-color: #fed93f;
 }
 
-.green.activo {
-    background-color: #66bb6a;
+.blue {
+    background-color: #094a8f;
 }
 
-.blue.activo {
-    background-color: #42a5f5;
+.blue.active {
+    background-color: #1c8cff;
 }
 
-.yellow.activo {
-    background-color: #fff176;
+/* CÍRCULO CENTRAL */
+.center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+    background-color: #202020;
+    border-radius: 50%;
+    border: 4px solid #eee;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-size: 2rem;
+    color: #fff;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .simon-board {
-        grid-template-columns: repeat(2, 100px);
-        grid-template-rows: repeat(2, 100px);
+/* RESPONSIVE */
+@media (max-width: 400px) {
+    .circle-wrapper {
+        width: 240px;
+        height: 240px;
     }
 
-    .simon-btn {
-        width: 100px;
-        height: 100px;
+    .center-circle {
+        width: 90px;
+        height: 90px;
+        border-width: 6px;
+    }
+
+    .btn-strict {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+    }
+
+    .active-strict{
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
     }
 }

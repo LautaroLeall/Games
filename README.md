@@ -4,6 +4,7 @@ Este proyecto es una aplicación web construida con **React + Vite**, que ofrece
 
 - 🪨✋✂️ **Piedra, Papel o Tijera**
 - ❌⭕ **Ta Te Ti**.
+- 🧠 **Game Memory**
 
 ---
 
@@ -94,15 +95,15 @@ src/
 ## 🛠 Instalación y ejecución
 
 ```bash
-Cloná el repositorio:
+# Cloná el repositorio:
     git clone https://github.com/LautaroLeall/Games
 
-Entrá al directorio del proyecto:
+# Entrá al directorio del proyecto:
     cd GAMES
 
-Instalá las dependencias:
+# Instalá las dependencias:
     npm install
 
-Iniciá el servidor de desarrollo:
+# Iniciá el servidor de desarrollo:
     npm run dev
 ```
