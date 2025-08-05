@@ -1,3 +1,4 @@
+// src/pages/Home.jsx
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
@@ -43,6 +44,16 @@ const Home = ({ setMostrarFooter }) => {
                     data-bs-title="¡Juega a TA TE TI!"
                 >
                     <img src="/ta-te-ti.png" className="img-games" alt="Juego Ta Te Ti" />
+                </Link>
+                <Link
+                    to="/game-memory"
+                    className="btn btn-play"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    data-bs-custom-class="custom-tooltip"
+                    data-bs-title="¡Juega a Luces de Memoria!"
+                >
+                    <img src="/game-memory.png" className="img-games" alt="Juego Luces de Memoria" />
                 </Link>
             </div>
         </div>
