@@ -1,73 +1,65 @@
 // src/components/GLM/MemoryGame.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MdGamepad } from "react-icons/md";
 import Swal from 'sweetalert2';
 import './MemoryGame.css';
 
-// Sonidos por color
-const sounds = {
-    1: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-1.mp3'),
-    2: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-2.mp3'),
-    3: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-3.mp3'),
-    4: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-4.mp3'),
-};
+import {
+    getRandomColor,
+    flashButton,
+    playSequence
+} from './memoryLogic';
 
 const MemoryGame = ({ setMostrarFooter }) => {
-    // Estados clave para el funcionamiento del juego
-    const [sequence, setSequence] = useState([]); // Secuencia del sistema
-    const [userSequence, setUserSequence] = useState([]); // Secuencia del jugador
-    const [active, setActive] = useState(false); // Si el juego está activo
-    const [level, setLevel] = useState(0); // Nivel actual
-    const [highlight, setHighlight] = useState(null); // Color iluminado
-    const [lockInput, setLockInput] = useState(true); // Bloquear clicks mientras suena
-    const [strictMode, setStrictMode] = useState(false); // Modo estricto ON/OFF
+    // Secuencia del sistema y del usuario
+    const [sequence, setSequence] = useState([]);
+    const [userSequence, setUserSequence] = useState([]);
+    // Control de estado del juego
+    const [active, setActive] = useState(false);
+    const [level, setLevel] = useState(0);
+    // Para resaltar el botón iluminado
+    const [highlight, setHighlight] = useState(null);
+    // Bloquea clicks mientras suena o anima
+    const [lockInput, setLockInput] = useState(true);
+    // Modo estricto (solo configurable antes de jugar)
+    const [strictMode, setStrictMode] = useState(false);
+    // Para disparar la animación de error (“shake” CSS)
+    const [errorAnim, setErrorAnim] = useState(false);
 
-    // Ocultar el footer mientras se juega
+    // Ref que siempre refleja el último valor de `active`
+    const activeRef = useRef(active);
+    useEffect(() => { activeRef.current = active }, [active]);
+
+    // Mostrar/ocultar footer según si el juego está activo
     useEffect(() => {
-        setMostrarFooter(false);
-    }, [setMostrarFooter]);
+        setMostrarFooter(!active);
+    }, [active, setMostrarFooter]);
 
-    // Generar número aleatorio del 1 al 4 (colores)
-    const getRandomColor = () => Math.floor(Math.random() * 4) + 1;
-
-    // Reproducir sonido al activar color
-    const playSound = (id) => {
-        const audio = sounds[id];
-        audio.currentTime = 0;
-        audio.play();
-    };
-
-    // Iluminar y reproducir un botón
-    const flashButton = (id) => {
-        setHighlight(id);
-        playSound(id);
-        setTimeout(() => setHighlight(null), 500);
-    };
-
-    // Reproducir secuencia del sistema
-    const playSequence = async () => {
-        setLockInput(true);
-        for (let i = 0; i < sequence.length; i++) {
-            await new Promise((res) => setTimeout(res, 700));
-            flashButton(sequence[i]);
-        }
-        setTimeout(() => setLockInput(false), 700);
-    };
-
-    // Iniciar juego desde cero
-    const startGame = () => {
+    // Inicia el juego:
+    // - Crea la primera secuencia
+    // - Resetea el estado de usuario y nivel
+    // - Activa la reproducción de la secuencia
+    const handleStartGame = () => {
         const start = [getRandomColor()];
         setSequence(start);
         setUserSequence([]);
         setLevel(1);
         setActive(true);
-        flashButton(start[0]);
-        setTimeout(() => setLockInput(false), 1000);
+
+        setTimeout(() => {
+            playSequence(
+                start,
+                (id) => flashButton(id, setHighlight),
+                setLockInput,
+                () => activeRef.current  // pasa la función que chequea si sigue activo
+            );
+        }, 500);
     };
 
-    // Reset completo del juego
-    const resetGame = () => {
+    // Resetea TODO al estado inicial y cancela
+    // cualquier secuencia en curso (porque activeRef pasa a false).
+    const handleResetGame = () => {
         setActive(false);
         setSequence([]);
         setUserSequence([]);
@@ -76,98 +68,129 @@ const MemoryGame = ({ setMostrarFooter }) => {
         setLockInput(true);
     };
 
-    // Alternar el modo estricto
+    // Alterna modo estricto solo antes de jugar.
     const handleStrictToggle = () => {
-        setStrictMode(!strictMode);
+        if (!active) {
+            setStrictMode(!strictMode);
+        }
     };
 
-    // Manejar click del jugador
+    // Maneja clicks del jugador:
+    // - Si el input está bloqueado o no activo, no hace nada.
+    // - Si el usuario falla, dispara animación + alerta.
+    // - Si completa, avanza nivel y reproduce nueva secuencia.
     const handleClick = (id) => {
         if (!active || lockInput) return;
 
-        const updatedSequence = [...userSequence, id];
-        setUserSequence(updatedSequence);
-        flashButton(id);
+        const updated = [...userSequence, id];
+        setUserSequence(updated);
+        flashButton(id, setHighlight);
 
-        const index = updatedSequence.length - 1;
+        const idx = updated.length - 1;
+        const isWrong = updated[idx] !== sequence[idx];
 
-        // Si se equivoca
-        if (updatedSequence[index] !== sequence[index]) {
+        if (isWrong) {
+            // Shake animation al fallar
+            setErrorAnim(true);
+            setTimeout(() => setErrorAnim(false), 600);
+
+            const swalOpts = { background: '#1a1a1a', color: '#fff' };
+
             if (strictMode) {
                 Swal.fire({
                     icon: 'error',
                     title: '¡Modo estricto activado!',
                     text: 'Fallaste. Volvés al principio.',
-                    confirmButtonText: 'Reintentar',
-                    background: '#1a1a1a',
-                    color: '#fff',
-                }).then(() => resetGame());
+                    confirmButtonText: 'Reiniciar',
+                    ...swalOpts
+                }).then(handleResetGame);
             } else {
                 Swal.fire({
                     icon: 'warning',
                     title: '¡Oops!',
                     text: 'Fallaste, pero podés seguir intentando.',
                     confirmButtonText: 'Continuar',
-                    background: '#1a1a1a',
-                    color: '#fff',
+                    ...swalOpts
                 }).then(() => {
                     setUserSequence([]);
-                    setTimeout(() => playSequence(), 1000);
+                    setTimeout(() => {
+                        playSequence(
+                            sequence,
+                            (c) => flashButton(c, setHighlight),
+                            setLockInput,
+                            () => activeRef.current
+                        );
+                    }, 1000);
                 });
             }
             return;
         }
 
-        // Si acierta toda la secuencia
-        if (updatedSequence.length === sequence.length) {
+        // Si acierta toda la secuencia, sube nivel
+        if (updated.length === sequence.length) {
             const next = [...sequence, getRandomColor()];
             setLevel(level + 1);
             setSequence(next);
             setUserSequence([]);
-            setTimeout(() => playSequence(), 1000);
+            setTimeout(() => {
+                playSequence(
+                    next,
+                    (c) => flashButton(c, setHighlight),
+                    setLockInput,
+                    () => activeRef.current
+                );
+            }, 1000);
         }
     };
 
-    // UI del juego
     return (
-        <div className="simon-container d-flex flex-column align-items-center text-center">
-            {/* Título principal */}
+        <div className={`simon-container d-flex flex-column align-items-center text-center ${errorAnim ? 'shake-animation' : ''}`}>
             <h1 className="first-title">SIMON</h1>
-            <p className="description m-3">NIVEL ACTUAL: <strong>{level}</strong></p>
 
-            {/* Control */}
+            {/* Solo muestra el nivel cuando el juego está activo */}
+            {active && (
+                <p className="description m-3">
+                    NIVEL ACTUAL: <strong>{level}</strong>
+                </p>
+            )}
+
+            {/* Toggle de modo estricto; deshabilitado en partida */}
             <div className="d-flex justify-content-center">
                 <button
                     className={`btn btn-strict ${strictMode ? 'active-strict' : ''}`}
                     onClick={handleStrictToggle}
+                    disabled={active}
                 >
                     {strictMode ? 'Modo Estricto: ON' : 'Modo Estricto: OFF'}
                 </button>
             </div>
 
-            {/* Zona de juego visual */}
+            {/* Zona de juego */}
             <div className="circle-wrapper">
                 <div className={`quadrant green ${highlight === 1 ? 'active' : ''}`} onClick={() => handleClick(1)} />
                 <div className={`quadrant red ${highlight === 2 ? 'active' : ''}`} onClick={() => handleClick(2)} />
                 <div className={`quadrant yellow ${highlight === 3 ? 'active' : ''}`} onClick={() => handleClick(3)} />
                 <div className={`quadrant blue ${highlight === 4 ? 'active' : ''}`} onClick={() => handleClick(4)} />
 
-                {/* Círculo decorativo del centro */}
                 <div className="center-circle shadow">
                     <MdGamepad />
                 </div>
             </div>
 
-            {/* Botones */}
+            {/* Controles de inicio/reset y volver */}
             <div className="mt-4 d-flex gap-3 flex-wrap justify-content-center">
                 <button
                     className="btn btn-play"
-                    onClick={active ? resetGame : startGame}
+                    onClick={active ? handleResetGame : handleStartGame}
                 >
                     {active ? 'REINICIAR' : 'JUGAR'}
                 </button>
 
-                <Link to="/" className="btn btn-play">VOLVER</Link>
+                {!active && (
+                    <Link to="/" className="btn btn-play">
+                        VOLVER
+                    </Link>
+                )}
             </div>
         </div>
     );
