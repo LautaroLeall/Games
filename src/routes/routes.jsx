@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from '../pages/Home';
 import PPTGame from '../components/PPT/PPTGame';
 import TTTGame from '../components/TTT/TTTGame';
-import MemoryGame from '../components/GLM/MemoryGame';
+import MemoryGame from '../components/GSM/MemoryGame';
 
 const RoutesApp = ({ setMostrarFooter }) => {
     return (

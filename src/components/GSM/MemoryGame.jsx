@@ -1,4 +1,4 @@
-// src/components/GLM/MemoryGame.jsx
+// src/components/GSM/MemoryGame.jsx
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { MdGamepad } from "react-icons/md";

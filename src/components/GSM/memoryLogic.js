@@ -1,17 +1,21 @@
-// src/components/GLM/memoryLogic.js
+// src/components/GSM/memoryLogic.js
 
+// Import audios
+import Sound1 from './sound/sound-1.mp3';
+import Sound2 from './sound/sound-2.mp3';
+import Sound3 from './sound/sound-3.mp3';
+import Sound4 from './sound/sound-4.mp3';
 
 // Devuelve un número aleatorio entre 1 y 4, representando un color.
 export const getRandomColor = () => Math.floor(Math.random() * 4) + 1;
 
 // Sonidos por color
 const sounds = {
-    1: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-1.mp3'),
-    2: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-2.mp3'),
-    3: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-3.mp3'),
-    4: new Audio('https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-4.mp3'),
+    1: new Audio(Sound1),
+    2: new Audio(Sound2),
+    3: new Audio(Sound3),
+    4: new Audio(Sound4),
 };
-
 
 // Reproduce el sonido correspondiente al id de color.
 export const playSound = (id) => {
@@ -20,14 +24,12 @@ export const playSound = (id) => {
     audio.play();
 };
 
-
 // Ilumina el botón (vía setHighlight) y reproduce su sonido.
 export const flashButton = (id, setHighlight) => {
     setHighlight(id);
     playSound(id);
     setTimeout(() => setHighlight(null), 500);
 };
-
 
 // Reproduce toda la secuencia de colores de forma asíncrona.
 // Comprueba en cada paso si el juego sigue activo (getActive()).
