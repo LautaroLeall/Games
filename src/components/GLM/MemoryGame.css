@@ -1,0 +1,66 @@
+.simon-container {
+    margin-top: 3rem;
+}
+
+.simon-board {
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    grid-template-rows: repeat(2, 150px);
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.simon-btn {
+    width: 150px;
+    height: 150px;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.red {
+    background-color: #d32f2f;
+}
+
+.green {
+    background-color: #388e3c;
+}
+
+.blue {
+    background-color: #1976d2;
+}
+
+.yellow {
+    background-color: #fbc02d;
+}
+
+.red.activo {
+    background-color: #ef5350;
+}
+
+.green.activo {
+    background-color: #66bb6a;
+}
+
+.blue.activo {
+    background-color: #42a5f5;
+}
+
+.yellow.activo {
+    background-color: #fff176;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .simon-board {
+        grid-template-columns: repeat(2, 100px);
+        grid-template-rows: repeat(2, 100px);
+    }
+
+    .simon-btn {
+        width: 100px;
+        height: 100px;
+    }
+}
