@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// src/App.jsx
+import { useState } from 'react';
 import RoutesApp from './routes/routes';
 import Footer from './components/Footer/Footer';
 
