@@ -26,6 +26,7 @@
 
 /* EN EL JUEGO */
 .btn-play {
+    width: auto;
     letter-spacing: 0.3rem;
     font-weight: 600;
     background-color: rgba(70, 100, 100, 0.6);

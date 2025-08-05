@@ -149,7 +149,7 @@ const MemoryGame = ({ setMostrarFooter }) => {
 
             {/* Solo muestra el nivel cuando el juego está activo */}
             {active && (
-                <p className="description m-3">
+                <p className="nivel-actual m-4">
                     NIVEL ACTUAL: <strong>{level}</strong>
                 </p>
             )}

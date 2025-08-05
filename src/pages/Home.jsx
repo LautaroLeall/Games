@@ -47,7 +47,7 @@ const Home = ({ setMostrarFooter }) => {
                 </Link>
                 <Link
                     to="/game-memory"
-                    className="btn btn-play"
+                    className="btn btn-play mb-4"
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     data-bs-custom-class="custom-tooltip"
