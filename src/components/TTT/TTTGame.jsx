@@ -1,3 +1,4 @@
+// src/components/TTT/TTTGame.jsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { verificarGanador, esEmpate, obtenerMovimientoComputadora } from './logic';
