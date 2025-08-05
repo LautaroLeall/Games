@@ -37,6 +37,10 @@
         gap: 2rem;
         flex-wrap: wrap;
     }
+
+    .btn-memory{
+        margin-bottom: 1.5rem;
+    }
 }
 
 /* Celulares medianos y chicos (≤ 480px) */
