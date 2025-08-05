@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+// src/components/PPT/PPTGame.jsx
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { opciones, getComputerChoice, getWinner } from './utils';

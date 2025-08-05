@@ -1,4 +1,4 @@
-// utils.js
+// src/components/PPT/utils.js
 // Funciones auxiliares puras para el juego de Piedra, Papel o Tijera
 
 // Opciones disponibles
